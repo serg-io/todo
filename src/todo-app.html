@@ -1,0 +1,38 @@
+<!-- Custom element used to store all the todo items in localStorage. -->
+<todo-storage name="todos" hidden></todo-storage>
+
+<section class="todoapp">
+	<!-- Custom element that extends <header>. It contains the form to create a todo. -->
+	<header is="todo-header" class="header"></header>
+
+	<!--
+		Custom element that extends <section>. It contains the list of todos. Its attributes are
+		"infused" when the <todo-app> element (the host element) receives a "count-updated" event.
+		This element is hidden if there are no todos.
+	-->
+	<section is="todo-list"
+		class="main"
+		data-infuse="count-updated"
+		hidden?="${ event && !event.detail.total }"
+		active="${ event ? event.detail.active : 0 }"
+		completed="${ event ? event.detail.completed : 0 }">
+	</section>
+
+	<!--
+		Custom element that extends <footer>. It contains a counter of active todos and a button to
+		clear completed todos. Its attributes are "infused" when the <todo-app> element (the host
+		element ) receives a "count-updated" event. This element is hidden if there are no todos.
+	-->
+	<footer is="todo-footer"
+		class="footer"
+		data-infuse="count-updated"
+		hidden?="${ event && !event.detail.total }"
+		active="${ event ? event.detail.active : 0 }"
+		completed="${ event ? event.detail.completed : 0 }">
+	</footer>
+</section>
+
+<footer class="info">
+	<p>Double-click to edit a todo</p>
+	<p>Created by <a href="https://github.com/serg-io">Sergio Alcantara</a></p>
+</footer>

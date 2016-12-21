@@ -1,0 +1,6 @@
+<span class="todo-count" i>${ host.itemsLeft }</span>
+
+<!-- This button is hidden if there are no completed items left ↓ -->
+<button type="button" class="clear-completed" hidden?="${ !host.completed }" i>
+	Clear completed
+</button>
